@@ -13,9 +13,18 @@ void main(List<String> args) {
   print('Good Morning $firstName $lastName');
 }
 
-void validateInput(bool condition, String hintText) {
+void askUser(String question, bool condition, String hintText) {
+  do {
+    print(question);
+    var usrInput = stdin.readLineSync();
+    bool validation = validateInput(condition, hintText);
+  } while (true);
+}
+
+bool validateInput(bool condition, String hintText) {
   if (!condition) {
     print(hintText);
     var newInput = stdin.readLineSync();
   }
+  return true;
 }
