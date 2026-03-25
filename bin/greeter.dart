@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'helpers.dart';
 
 bool validInput = false;
 String? input;
@@ -12,7 +13,7 @@ void main() {
   do {
     print("Please tell me your first name:");
     input = stdin.readLineSync();
-    validInput = !isNullOrEmpty(input);
+    validInput = !Helpers().isNullOrEmpty(input);
   } while (!validInput);
   firstName = input!;
   resetInput();
@@ -20,7 +21,7 @@ void main() {
   do {
     print("Hi $firstName! What is your last name:");
     input = stdin.readLineSync();
-    validInput = !isNullOrEmpty(input);
+    validInput = !Helpers().isNullOrEmpty(input);
   } while (!validInput);
   lastName = input!;
   resetInput();
@@ -29,7 +30,7 @@ void main() {
     print("Would you mind sharing your age aswell?");
     input = stdin.readLineSync();
     int? ageTemp;
-    if (!isNullOrEmpty(input)) {
+    if (!Helpers().isNullOrEmpty(input)) {
       ageTemp = int.tryParse(input!);
     }
 
@@ -68,8 +69,4 @@ void main() {
 void resetInput() {
   input = null;
   validInput = false;
-}
-
-bool isNullOrEmpty(String? input) {
-  return (input == null || input.isEmpty);
 }
