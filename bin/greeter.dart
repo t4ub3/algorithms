@@ -53,11 +53,11 @@ void main(List<String> args) {
     final now = DateTime.now();
     final int hour = now.hour;
     switch (hour) {
-      case < 10:
+      case < 13:
         greeting = "Good morning";
         break;
       case < 18:
-        greeting = "Good day";
+        greeting = "Good afternoon";
         break;
       default:
     }
