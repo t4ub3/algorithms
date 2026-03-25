@@ -1,30 +1,75 @@
 import 'dart:io';
 
+bool validInput = false;
+String? input;
+
 void main(List<String> args) {
-  print("Please tell me your first name:");
-  var firstName = stdin.readLineSync();
-  print("Hi $firstName! What is your last name:");
-  var lastName = stdin.readLineSync();
-  print("Would you mind sharing your age aswell?");
-  var age = int.tryParse(stdin.readLineSync()!);
-  print("And finally please reveal your gender!");
-  var gender = stdin.readLineSync();
+  String firstName;
+  String lastName;
+  String age;
+  String gender;
 
-  print('Good Morning $firstName $lastName');
-}
-
-void askUser(String question, bool condition, String hintText) {
   do {
-    print(question);
-    var usrInput = stdin.readLineSync();
-    bool validation = validateInput(condition, hintText);
-  } while (true);
+    print("Please tell me your first name:");
+    input = stdin.readLineSync();
+    validInput = !isNullOrEmpty(input);
+  } while (!validInput);
+  firstName = input!;
+  resetInput();
+
+  do {
+    print("Hi $firstName! What is your last name:");
+    input = stdin.readLineSync();
+    validInput = !isNullOrEmpty(input);
+  } while (!validInput);
+  lastName = input!;
+  resetInput();
+
+  do {
+    print("Would you mind sharing your age aswell?");
+    input = stdin.readLineSync();
+    int? ageTemp;
+    if (!isNullOrEmpty(input)) {
+      ageTemp = int.tryParse(input!);
+    }
+
+    validInput = (ageTemp != null && (0 <= ageTemp && ageTemp <= 150));
+  } while (!validInput);
+  age = input!;
+  resetInput();
+
+  do {
+    print("And finally please reveal your gender!");
+    input = stdin.readLineSync();
+    validInput = (input != null && input!.isNotEmpty);
+  } while (!validInput);
+  gender = input!;
+  resetInput();
+
+  if (int.parse(age) < 40) {
+    print("Hi, $firstName");
+  } else {
+    String greeting = "Good evening";
+    final now = DateTime.now();
+    final int hour = now.hour;
+    switch (hour) {
+      case < 10:
+        greeting = "Good morning";
+        break;
+      case < 18:
+        greeting = "Good day";
+        break;
+      default:
+    }
+    print("$greeting, $firstName $lastName");
+  }
 }
 
-bool validateInput(bool condition, String hintText) {
-  if (!condition) {
-    print(hintText);
-    var newInput = stdin.readLineSync();
-  }
-  return true;
+void resetInput() {
+  input = null;
+  validInput = false;
+}
+
+bool isNullOrEmpty(String? input) {
+  return (input == null || input.isEmpty);
 }
