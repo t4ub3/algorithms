@@ -3,7 +3,7 @@ import 'dart:io';
 bool validInput = false;
 String? input;
 
-void main(List<String> args) {
+void main() {
   String firstName;
   String lastName;
   String age;
