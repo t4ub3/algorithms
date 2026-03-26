@@ -8,6 +8,11 @@ class Helpers {
     }
   }
 
+  bool isLetterOnlyString(String? testString) {
+    RegExp regex = RegExp(r"^[a-zA-Z]+$");
+    return isNullOrEmpty(testString) ? false : regex.hasMatch(testString!);
+  }
+
   bool isNullOrEmpty(String? input) {
     return (input == null || input.isEmpty);
   }
