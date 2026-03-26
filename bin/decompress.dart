@@ -25,12 +25,14 @@ void main(List<String> args) {
   List<String> uncompressedLetters = [];
 
   for (var i = 0; i < atoms.length; i++) {
+    // add x amount the letter before
     if (Helpers().isNumber(atoms[i])) {
       int count = int.parse(atoms[i]);
       for (var j = 0; j < count - 1; j++) {
         uncompressedLetters.add(atoms[i - 1]);
       }
     } else {
+      // add the letter itself
       uncompressedLetters.add(atoms[i]);
     }
   }
