@@ -13,7 +13,7 @@ void main(List<String> args) {
   } else {
     input = args[0];
   }
-  while (!Helpers().isLetterOnlyString(input)) {
+  while (!Helpers().isLetterOnly(input)) {
     print(hint(input));
     input = stdin.readLineSync();
   }

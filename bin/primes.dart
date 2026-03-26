@@ -14,8 +14,11 @@ void main() {
   // <-- validate input
 
   List<int> primes = [];
+  if (userInt > 2) {
+    primes.add(2);
+  }
   // start at 2 because 1 is no prime
-  for (var i = 2; i < userInt + 1; i++) {
+  for (var i = 1; i < userInt + 1; i = i + 2) {
     if (countDividers(i) == 2) {
       primes.add(i);
     }

@@ -14,8 +14,9 @@ void main() {
   userInt = int.parse(input!);
   // <-- validate input
 
-  print(calcPrimes1());
+  //   print(calcPrimes1());
   print(calcPrimes2());
+  print(calcPrimes4());
   print(calcPrimes3());
 }
 
@@ -84,6 +85,25 @@ String calcPrimes2() {
     "Count dividers with break (my fast solution)",
     primes2,
     stopwatch2,
+  );
+}
+
+String calcPrimes4() {
+  List<int> primes4 = [];
+  final stopwatch4 = Stopwatch()..start();
+  if (userInt > 2) {
+    primes4.add(2);
+  }
+  for (var i = 1; i < userInt + 1; i = i + 2) {
+    if (countDividersWithBreak(i) == 2) {
+      primes4.add(i);
+    }
+  }
+  stopwatch4.stop();
+  return formatResult(
+    "Count dividers with break optimized (my faster solution)",
+    primes4,
+    stopwatch4,
   );
 }
 
