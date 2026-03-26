@@ -18,16 +18,46 @@ void main(List<String> args) {
     print(hint(input));
     input = stdin.readLineSync();
   }
-  final String uncompressedString = input!.toUpperCase();
+  final String compressedString = input!.toUpperCase();
   // validate input <--
 
-  print(uncompressedString);
-  final List<String> letters = uncompressedString.split("");
-  List<String> compressedLetters = [];
+  final List<String> atoms = splitStringKeepNumbers(compressedString);
+  List<String> uncompressedLetters = [];
 
-  for (var i = 0; i < letters.length; i++) {
-    if (Helpers().isNumber(letters[i])) {}
+  for (var i = 0; i < atoms.length; i++) {
+    if (Helpers().isNumber(atoms[i])) {
+      int count = int.parse(atoms[i]);
+      for (var j = 0; j < count - 1; j++) {
+        uncompressedLetters.add(atoms[i - 1]);
+      }
+    } else {
+      uncompressedLetters.add(atoms[i]);
+    }
   }
+  String uncompressedString = uncompressedLetters.join("");
+  print(uncompressedString);
+}
+
+List<String> splitStringKeepNumbers(String input) {
+  final result = <String>[];
+  int i = 0;
+
+  while (i < input.length) {
+    if (Helpers().isNumber(input[i])) {
+      // digit: collect consecutive digits
+      final start = i;
+      while (i < input.length && Helpers().isNumber(input[i])) {
+        i++;
+      }
+      result.add(input.substring(start, i));
+    } else {
+      // letter: add individually
+      result.add(input[i]);
+      i++;
+    }
+  }
+
+  return result;
 }
 
 String hint(String? input) {
