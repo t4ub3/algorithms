@@ -19,7 +19,6 @@ void main(List<String> args) {
   }
   final String uncompressedString = input!.toUpperCase();
   // validate input <--
-
   final List<String> letters = uncompressedString.split("");
   List<String> compressedLetters = [];
 

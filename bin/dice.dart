@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 import 'helpers.dart';
@@ -18,7 +17,6 @@ void main() {
 
   estimatedRolls = int.parse(input!);
   rollDice(estimatedRolls);
-  //   print(numberOfRolls);
 }
 
 String hint(String? input) {
@@ -31,7 +29,7 @@ void rollDice(int amount) {
     int x = Random().nextInt(6) + 1;
     rolls.add(x);
     if (i > 0) {
-      if (x == 6 && x == rolls[i - 1]) {
+      if (x == 6 && rolls[i - 1] == 6) {
         printSuccess(rolls);
         return;
       }
@@ -44,7 +42,7 @@ void rollDice(int amount) {
 
 void printSuccess(List rolls) {
   double percentage;
-  percentage = rolls.length / estimatedRolls;
+  percentage = (rolls.length / estimatedRolls) * 100;
   print(
     "Congratulations! We rolled two 6s in a row. It took ${rolls.length.toString()} rolls. That is only ${percentage.toStringAsFixed(1)}% of your estimated ${estimatedRolls.toString()} rolls. Here are all rolls: ${rolls.toString()}",
   );

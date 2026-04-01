@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'helpers.dart';
 
-bool validInput = false;
+bool isValidInput = false;
 String? input;
 
 void main() {
@@ -13,16 +13,16 @@ void main() {
   do {
     print("Please tell me your first name:");
     input = stdin.readLineSync();
-    validInput = !Helpers().isNullOrEmpty(input);
-  } while (!validInput);
+    isValidInput = !Helpers().isNullOrEmpty(input);
+  } while (!isValidInput);
   firstName = input!;
   resetInput();
 
   do {
     print("Hi $firstName! What is your last name:");
     input = stdin.readLineSync();
-    validInput = !Helpers().isNullOrEmpty(input);
-  } while (!validInput);
+    isValidInput = !Helpers().isNullOrEmpty(input);
+  } while (!isValidInput);
   lastName = input!;
   resetInput();
 
@@ -34,16 +34,16 @@ void main() {
       ageTemp = int.tryParse(input!);
     }
 
-    validInput = (ageTemp != null && (0 <= ageTemp && ageTemp <= 150));
-  } while (!validInput);
+    isValidInput = (ageTemp != null && (0 <= ageTemp && ageTemp <= 150));
+  } while (!isValidInput);
   age = input!;
   resetInput();
 
   do {
     print("And finally please reveal your gender!");
     input = stdin.readLineSync();
-    validInput = (input != null && input!.isNotEmpty);
-  } while (!validInput);
+    isValidInput = !Helpers().isNullOrEmpty(input);
+  } while (!isValidInput);
   gender = input!;
   resetInput();
 
@@ -56,10 +56,8 @@ void main() {
     switch (hour) {
       case < 13:
         greeting = "Good morning";
-        break;
       case < 18:
         greeting = "Good afternoon";
-        break;
       default:
     }
     print("$greeting, $firstName $lastName");
@@ -68,5 +66,5 @@ void main() {
 
 void resetInput() {
   input = null;
-  validInput = false;
+  isValidInput = false;
 }

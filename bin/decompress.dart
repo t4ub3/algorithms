@@ -7,7 +7,7 @@ const String welcome =
 String? input;
 
 void main(List<String> args) {
-  // --> validate Input
+  // *--> validate Input
   if (args.isEmpty) {
     print(welcome);
     input = stdin.readLineSync();
@@ -19,9 +19,10 @@ void main(List<String> args) {
     input = stdin.readLineSync();
   }
   final String compressedString = input!.toUpperCase();
-  // validate input <--
+  // *validate input <--
 
   final List<String> atoms = splitStringKeepNumbers(compressedString);
+  print(atoms);
   List<String> uncompressedLetters = [];
 
   for (var i = 0; i < atoms.length; i++) {

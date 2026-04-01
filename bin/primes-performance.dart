@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'helpers.dart';
 
 int userInt = 0;
@@ -75,17 +76,20 @@ String calcPrimes2() {
   List<int> primes2 = [];
 
   final stopwatch2 = Stopwatch()..start();
-  for (var i = 2; i < userInt + 1; i++) {
-    if (countDividersWithBreak(i) == 2) {
+  for (var i = 2; i <= userInt; i++) {
+    bool prime = true;
+    for (var j = 2; j <= sqrt(i).floor(); j++) {
+      if (i % j == 0) {
+        prime = false;
+        break;
+      }
+    }
+    if (prime) {
       primes2.add(i);
     }
   }
   stopwatch2.stop();
-  return formatResult(
-    "Count dividers with break (my fast solution)",
-    primes2,
-    stopwatch2,
-  );
+  return formatResult("Maxim", primes2, stopwatch2);
 }
 
 String calcPrimes4() {
@@ -100,11 +104,7 @@ String calcPrimes4() {
     }
   }
   stopwatch4.stop();
-  return formatResult(
-    "Count dividers with break optimized (my faster solution)",
-    primes4,
-    stopwatch4,
-  );
+  return formatResult("Jonas", primes4, stopwatch4);
 }
 
 String calcPrimes3() {
